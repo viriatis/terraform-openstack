@@ -1,0 +1,30 @@
+# ============================================================
+# terraform.tfvars.example
+# Copy to terraform.tfvars and fill in your values
+# ============================================================
+
+# Get these from your demo-openrc file
+os_auth_url = "http://<<IP_ADDRESS_PUBLIC>>/openstack-keystone/v3"
+os_username = "operator"
+os_password = "xxxx"
+os_project  = "operator-project"
+os_region   = "RegionOne"
+os_project_domain_name = "users"
+os_user_domain_name = "users"
+
+# External network name — check with: openstack network list --external
+external_network_name = "external-network"
+
+# Nginx subnet — different from your management/default network
+nginx_subnet_cidr = "10.10.10.0/24"
+
+# IMPORTANT: Restrict SSH to your IP only, not 0.0.0.0/0
+# Find your IP: curl ifconfig.me
+management_cidr = "192.168.200.0/24"  # your LAN
+
+# Instance config
+image_name  = "ubuntu"   # check: openstack image list
+flavor_name = "m1.small" # check: openstack flavor list
+
+# Path to your SSH public key
+public_key_path = "~/.ssh/ubuntu-server.pub"
