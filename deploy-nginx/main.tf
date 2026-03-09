@@ -11,9 +11,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket     = "terraform-state"
-    key        = "nginx/terraform.tfstate"
-    region     = "RegionOne"
+    bucket = "terraform-state"
+    key    = "nginx/terraform.tfstate"
+    region = "RegionOne"
 
     endpoints = {
       s3 = "http://192.168.200.102:3000"
@@ -85,8 +85,8 @@ resource "openstack_networking_router_interface_v2" "nginx_router_iface" {
 
 # Security group for nginx
 resource "openstack_networking_secgroup_v2" "nginx_sg" {
-  name        = "nginx-sg"
-  description = "Security group for nginx server - HTTP/HTTPS only"
+  name                 = "nginx-sg"
+  description          = "Security group for nginx server - HTTP/HTTPS only"
   delete_default_rules = true
 }
 
@@ -190,9 +190,9 @@ resource "openstack_images_image_v2" "ubuntu" {
 # ============================================================
 
 resource "openstack_compute_instance_v2" "nginx" {
-  name       = "nginx-server"
-  image_id   = openstack_images_image_v2.ubuntu.id
-  flavor_id  = openstack_compute_flavor_v2.small.id
+  name            = "nginx-server"
+  image_id        = openstack_images_image_v2.ubuntu.id
+  flavor_id       = openstack_compute_flavor_v2.small.id
   key_pair        = openstack_compute_keypair_v2.nginx_key.name
   security_groups = [openstack_networking_secgroup_v2.nginx_sg.name]
 
